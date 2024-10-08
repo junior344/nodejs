@@ -28,5 +28,5 @@ API Inconsistantes: Certaines bibliothèques de Node.js peuvent avoir des API in
 
 Pas Idéal pour les Applications CPU-Intensives: Node.js n'est pas le meilleur choix pour les applications qui nécessitent un traitement intensif du CPU, car il peut entraîner un blocage des événements.
 
-### Conclusion
+# Conclusion
 Apprendre Node.js est un atout considérable dans le monde moderne du développement web. Avec une forte demande pour des applications performantes et évolutives, maîtriser Node.js peut ouvrir de nombreuses portes dans votre carrière. Bien que Node.js présente certains inconvénients, ses avantages en font un choix privilégié pour de nombreux développeurs. En vous engageant à apprendre Node.js, vous vous préparez à relever les défis futurs du développement web et à contribuer à des projets innovants.
