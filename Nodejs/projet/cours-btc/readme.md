@@ -1,6 +1,6 @@
 # Bitcoin CLI - Suivi de la Courbe des Prix en Bitcoin
 ### Description
-Ce projet est un outil en ligne de commande créé avec Node.js permettant d'afficher la courbe des prix du Bitcoin en temps réel ou historique. L'idée derrière ce projet est d'apprendre les bases de Node.js en construisant une application simple et concrète, tout en explorant la manipulation de données API. Ce README présente les raisons pour lesquelles un tel projet est particulièrement bénéfique pour les débutants.
+Ce projet est un outil en ligne de commande créé avec Node.js permettant d'afficher  le prix du Bitcoin en temps réel. L'idée derrière ce projet est d'apprendre les bases de Node.js en construisant une application simple et concrète, tout en explorant la manipulation de données API. Ce README présente les raisons pour lesquelles un tel projet est particulièrement bénéfique pour les débutants.
 
 Pourquoi ce Projet est-il Utile pour un Débutant ?
 1. ## Compréhension des Bases de Node.js
