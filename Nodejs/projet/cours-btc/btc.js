@@ -2,20 +2,19 @@
 const axios = require('axios');
 
 async function main() {
+    const currency = process.argv[2] ? process.argv[2].toUpperCase() : 'USD';
     try {
         console.log(process.argv);
-        let currency = 'USD';
 
-        if(process.argv[2] ){
-            currency = process.argv[2].toUpperCase();
-        }
-        const response = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
+        const {data} = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json'); // destructuring
+
+        console.log(data);
     
-        if(!response.data.bpi[currency]) {
+        if(!data.bpi[currency]) {
             throw new Error(`devise inconnue: ${currency}`);
         }
-        const rate = response.data.bpi[currency].rate;
-        const updated = response.data.time.updated;
+        const rate = data.bpi[currency].rate;
+        const updated = data.time.updated;
     
         console.log(`> 1 BTC = ${rate} ${currency} (${updated})`);
     } catch (error) {
