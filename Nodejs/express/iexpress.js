@@ -1,11 +1,16 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const port = 3000;
 const path = require('path');
 
-let views = 0;
 
-
+app.use(session(
+    {
+        secret: '4IA0cd!:qM>QPDN)zAwxr$ahe"15bP^CcJOVNy<@c<N"bzh!jg/Jf;h(O(i^a',
+        resave: false,
+        saveUninitialized: true,
+    }));
 app.use(express.static('public'));
 
 app.use(express.json()) // for parsing application/json
@@ -29,8 +34,13 @@ app.post('/form', (req, res) => {
 });
 
 app.get('/',logRequest, (req, res) => {
-    views++;
-    res.send(`<h1>Hello World<small> ${views} fois</small></h1>`);
+
+    if(!req.session.views) {
+        req.session.views = 0;
+    }
+
+    req.session.views++;
+    res.send(`<h1>Hello World<small> ${req.session.views} fois</small></h1>`);
 })
 
 app.get('/articles/:id', (req, res) => {
