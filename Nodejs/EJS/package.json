@@ -1,16 +1,16 @@
 {
-  "name": "express",
+  "name": "ejs",
   "version": "1.0.0",
-  "main": "iexpress.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "clear && nodemon iexpress.js",
+    "dev": "clear && nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.1",
-    "express-session": "^1.18.1"
+    "ejs": "^3.1.10",
+    "express": "^4.21.1"
   }
 }

@@ -61,6 +61,7 @@ app.get('/bonjour/:prenom', (req, res) =>  {
 app.get('/fichier/html', (req, res) => {
     res.sendFile(path.join(__dirname, 'view/page.html'));
 })
+
 app.use((req, res) => {
     res.status(404).send('<h1>Page introuvable</h1>');
 });
