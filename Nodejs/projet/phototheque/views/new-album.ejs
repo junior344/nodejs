@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <%- include('partials/head')  %>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col">
+                <h1>Nouvel Album</h1>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <form action="/albums/create" method="POST">
+                    <div class="mb-3 form-group">
+                        <label for="title" class="form-label" name="albumTitle">Titre</label>
+                        <input type="text" class="form-control form-control" id="title" name="title" autofocus>
+                    </div>
+                   
+                     <% if (errors.length ) { %>
+                         <div class="mb-3 mt-4 alert alert-danger" role="alert">
+                                <%= errors[0] %>
+                        </div>
+                    <% }%>
+                    
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Année</label>
+                        <input type="number" class="form-control" id="year" name="year">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                </form>
+            </div>
+    </div>
+
+    
+    <%- include('partials/scripts')  %>
+</body>
+</html>
