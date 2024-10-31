@@ -26,6 +26,7 @@ app.use(session({
 }))
 
 app.use(flash());
+
 app.get('/', (req, res) => {
     res.redirect('/albums');
 });
@@ -36,6 +37,10 @@ app.use((req, res) => {
     res.status(404).send('404 Not Found');
 });
 
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).send('Something went wrong');
+});
 
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');

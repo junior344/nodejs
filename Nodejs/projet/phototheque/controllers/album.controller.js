@@ -1,16 +1,15 @@
 import Album from '../models/album.model.js';
-import mongoose from 'mongoose';
-import multer from 'multer';
+import catchAsync from '../helpers/catchAsync.js';
 import path from 'path';
-import fs from 'fs';;
+import fs from 'fs';
 
-export const listAlbums = async (req, res) => {
+export const listAlbums = catchAsync(async (req, res) => {
     const albums = await Album.find();
     res.render('albums', {
         title: 'Liste des albums',
         albums,
     });
-}
+});
 export const createAlbumForm = (req, res) => {
     try{
         res.render('new-album', {
@@ -24,52 +23,50 @@ export const createAlbumForm = (req, res) => {
     
 
 }
-const upload = multer({ dest: 'uploads/' }); // Configurez le dossier de destination
-upload.single('file'); // Utilisez upload.single pour un seul fichier
-
 export const updateAlbum = async (req, res) => {
-    const idAlbum = req.params.id.trim(); // Supprimez les espaces inutiles
+    const idAlbum = req.params.id.trim();
+    const album = await Album.findById(idAlbum);
+    
 
-    // Vérifiez si l'ID est valide
-    if (!mongoose.Types.ObjectId.isValid(idAlbum)) {
-        return res.status(400).send('Invalid album ID');
+    console.log(req.files);
+
+    if(!req?.files?.file){
+        req.flash('error', "Aucun fichier n'a été envoyé");
+        return res.redirect(`/albums/${idAlbum}`);
+    }
+    const imageType = req.files.file;
+    const uploadDir = path.join('public/uploads',idAlbum);
+    const localpath = path.join(uploadDir, imageType.name);
+
+    if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
     }
 
-    try {
-        const album = await Album.findById(idAlbum);
-        if (!album) {
-            return res.status(404).send('Album not found');
-        }
+    
 
-        console.log(req.files); // Utilisez req.file pour un seul fichier
-
-        const uploadDir = path.join('../public/uploads', idAlbum);
-        const localPath = path.join(uploadDir, req.files.file.name);
-        console.log("chemin local :"+localPath);
-
-        // Créez le répertoire s'il n'existe pas
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir, { recursive: true });
-        }
-
-        // Déplacez le fichier
-        console.log("chemin les mv :"+req.file.mv);
-        await req.file.mv(localPath);
-
-        res.redirect(`/albums/${idAlbum}`);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server error');
+    if(imageType.mimetype !== 'image/jpeg' && imageType.mimetype !== 'image/png'){
+        req.flash('error', "Le fichier doit être une image au format jpg ou png");
+        return res.redirect(`/albums/${idAlbum}`);
     }
+
+    await req.files.file.mv(localpath)
+
+    album.image.push(imageType.name);
+
+    await album.save();
+
+    res.redirect(`/albums/${idAlbum}`);
 };
 
 export const showAlbum = async (req, res) => {
     const { id } = req.params;
     const album = await Album.findById(id);
     res.render('album', {
-        title: album.title,
+        title:"mon album"+ album.title,
         album,
+        errors: req.flash('error'),
     });
+    console.log(album);
 }
 
 export  const  createAlbum = async (req, res) => {
@@ -91,10 +88,47 @@ export  const  createAlbum = async (req, res) => {
    
 }
 
+export const deleteImage = async (req, res) => {
+    const { id, imageIndex } = req.params;
+    const album = await Album.findById(id); // Récupération de l'album avec mongoose
+    const image = album.image[imageIndex];
+    if (!image) {
+        return res.redirect(`/albums/${id}`);
+    }
+
+    album.image.splice(imageIndex, 1);
+    const imagePath = path.join('public/uploads', id, image);
+    fs.unlinkSync(imagePath); // Suppression du fichier
+
+    await album.save(); // Mise à jour de l'album
+    res.redirect(`/albums/${id}`);
+}
+
+export const deleteAlbum = async (req, res) => {
+    const { id } = req.params;
+    await Album.findByIdAndDelete(id);
+
+    const albumDir = path.join('public/uploads', id);
+
+    fs.rm(albumDir, { recursive: true, force: true }, (err) => {
+        if (err) {
+            console.error("Erreur de suppression du dossier :", err);
+            return res.status(500).send("Erreur de suppression de l'album.");
+        }
+        console.log('Album supprimé');
+        res.redirect('/');
+    });
+    // Suppression du dossier de l'album 
+
+   
+}
+
 export default {
     createAlbumForm,
     createAlbum,
     listAlbums,
     showAlbum,
     updateAlbum,
+    deleteImage,
+    deleteAlbum,
 };
