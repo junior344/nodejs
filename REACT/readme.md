@@ -1,10 +1,10 @@
-<<<<<<< HEAD
+
 # Apprentissage de React
 # Introduction
 Dans le monde en constante évolution du développement web, il est essentiel de maîtriser des technologies modernes qui non seulement facilitent la création d'applications, mais qui permettent également d'atteindre des performances optimales. Actuellement, je me lance dans l'apprentissage de React. Ce README présente les avantages d'apprendre cette technologie et comment elle se complète avec d'autres pour offrir une expérience de développement enrichissante.
 
 # Pourquoi Apprendre React ?
-=======
+
 # Apprentissage de Node.js, React et TypeScript
 # Introduction
 Dans le monde en constante évolution du développement web, il est essentiel de maîtriser des technologies modernes qui non seulement facilitent la création d'applications, mais qui permettent également d'atteindre des performances optimales. Actuellement, je me lance dans l'apprentissage de Node.js, React, et TypeScript. Ce README présente les avantages d'apprendre ces technologies et comment elles se complètent pour offrir une expérience de développement enrichissante.
@@ -20,7 +20,7 @@ Node.js est connu pour sa performance grâce à son architecture asynchrone non-
 Avec npm (Node Package Manager), Node.js offre un écosystème vaste de bibliothèques et de frameworks qui facilitent le développement d'applications. Des outils comme Express.js simplifient la création de serveurs web et d'API.
 
 Pourquoi Apprendre React ?
->>>>>>> origin/main
+
 1. ### Bibliothèque de Développement Front-End
 React est une bibliothèque JavaScript développée par Facebook pour créer des interfaces utilisateur. Elle utilise un modèle basé sur les composants, ce qui facilite la réutilisation du code et la maintenance des applications.
 
@@ -30,7 +30,7 @@ React utilise un DOM virtuel qui permet de réduire les opérations coûteuses s
 3. ### Grande Communauté et Écosystème
 React bénéficie d'une communauté dynamique et d'un écosystème riche en outils et bibliothèques, comme Redux pour la gestion d'état et React Router pour le routage. Cela permet d'accéder à de nombreuses ressources, tutoriaux et solutions pour les développeurs.
 
-<<<<<<< HEAD
+
 # Conclusion
 L'apprentissage de React représente une opportunité exceptionnelle pour les développeurs souhaitant se positionner dans le paysage technologique actuel. Cette technologie se complète parfaitement avec d'autres comme Node.js et TypeScript et offre des solutions puissantes pour le développement d'applications modernes.
 
