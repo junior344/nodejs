@@ -25,7 +25,7 @@ app.use(session({
   saveUninitialized: true,
 }))
 
-app.use(flash());
+app.use(flash()); // Flash messages
 
 app.get('/', (req, res) => {
     res.redirect('/albums');
