@@ -1,0 +1,12 @@
+{
+  "name": "projet-demo",
+  "version": "1.0.0",
+  "description": "demo utilisateur npm",
+  "main": "index.js",
+  "scripts": {
+    "dev": "clear && nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
